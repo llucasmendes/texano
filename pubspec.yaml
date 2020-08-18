@@ -33,12 +33,18 @@ dependencies:
   sailor: ^0.7.1
   dartz: ^0.9.1
   get_it: ^4.0.2
+  moor_flutter: ^3.1.0
+  moor: ^3.3.1
+  path_provider: ^1.6.11
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   bloc_test: ^7.0.0
+  moor_generator: ^3.3.1 
   mockito: ^4.1.1
+  build_runner: ^1.10.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
