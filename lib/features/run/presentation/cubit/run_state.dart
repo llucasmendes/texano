@@ -1,8 +1,10 @@
-part of 'run_bloc.dart';
+part of 'run_cubit.dart';
+
 abstract class RunState extends Equatable {
   const RunState();
-}
-class RunInitial extends RunState {
+
   @override
   List<Object> get props => [];
 }
+
+class RunInitial extends RunState {}
