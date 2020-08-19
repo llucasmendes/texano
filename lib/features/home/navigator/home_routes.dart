@@ -16,7 +16,7 @@ abstract class HomeRoutes {
           builder: (context, args, params) {
             return BlocProvider<RunBloc>(
               create: (_) => dep<RunBloc>(),
-              child: RunPage(),
+              child: RunPage(args),
             );
           },
         ),
