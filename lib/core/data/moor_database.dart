@@ -1,8 +1,5 @@
-import 'package:moor/ffi.dart';
-import 'package:path/path.dart' as p;
 import 'package:moor/moor.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
+import 'package:moor_flutter/moor_flutter.dart';
 
 part 'moor_database.g.dart';
 
@@ -16,21 +13,25 @@ class LaudasTable extends Table {
   Set<Column> get primaryKey => {id};
 }
 
-LazyDatabase _openConnection() {
-  return LazyDatabase(() async {
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String dbFolder = appDocDir.path;
-    final file = File(p.join(dbFolder, 'db.sqlite'));
-    return VmDatabase(file);
-  });
-}
-
 @UseMoor(tables: [LaudasTable])
-class MyDatabase extends _$MyDatabase {
-  MyDatabase() : super(_openConnection());
+class AppDatabase extends _$AppDatabase {
+  AppDatabase()
+      : super((FlutterQueryExecutor.inDatabaseFolder(
+          path: 'db.sqlite',
+          logStatements: true,
+        )));
 
   @override
   int get schemaVersion => 1;
+
+  Future<List<LaudasTableData>> getAllLaudas() => select(laudasTable).get();
+  Stream<List<LaudasTableData>> watchAllLaudas() => select(laudasTable).watch();
+
+  Future<int> insertLaudas(LaudasTableData data) =>
+      into(laudasTable).insert(data);
+  Future updateLaudas(LaudasTableData data) =>
+      update(laudasTable).replace(data);
+  Future deleteLaudas(LaudasTableData data) => delete(laudasTable).delete(data);
 }
 
 /*
