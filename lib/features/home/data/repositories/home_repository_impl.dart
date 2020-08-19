@@ -17,8 +17,8 @@ class HomeRepositoryImpl implements HomeRepository {
     try {
       final laudas = await homeDataSource.getLaudasSalvas();
       return Right(laudas);
-    } catch (e) {
-      return Left(e);
+    } catch (_) {
+      return Left(DataBaseFailure());
     }
   }
 }
