@@ -24,5 +24,5 @@ void initHome() {
   );
 
   // Data sources
-  dep.registerLazySingleton(() => HomeDataSource());
+  dep.registerLazySingleton(() => HomeDataSource(database: dep()));
 }
