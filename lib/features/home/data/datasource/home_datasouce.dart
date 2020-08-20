@@ -21,17 +21,24 @@ class HomeDataSource {
         .toList();
   }
 
-  Future insertLauda(Lauda lauda) async {
+  Future<int> insertLauda(Lauda lauda) async {
+    final data = LaudasTableData(
+      texto: lauda.conteudo,
+      titulo: lauda.titulo,
+      data: DateTime.now(),
+    );
+    return database.insertLaudas(data);
+  }
+
+  Future deleteLauda(Lauda lauda) async {
     final data = LaudasTableData(
       id: lauda.id,
       texto: lauda.conteudo,
       titulo: lauda.titulo,
       data: DateTime.now(),
     );
-    database.insertLaudas(data);
+    database.deleteLaudas(data);
   }
-
-  Future deleteLauda() async {}
 
   Future updateLauda(Lauda lauda) async {
     final data = LaudasTableData(

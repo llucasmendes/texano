@@ -12,11 +12,12 @@ class LaudasTableData extends DataClass implements Insertable<LaudasTableData> {
   final DateTime data;
   final String texto;
   final String titulo;
-  LaudasTableData(
-      {@required this.id,
-      this.data,
-      @required this.texto,
-      @required this.titulo});
+  LaudasTableData({
+    this.id,
+    this.data,
+    @required this.texto,
+    @required this.titulo,
+  });
   factory LaudasTableData.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {

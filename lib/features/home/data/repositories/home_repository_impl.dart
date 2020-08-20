@@ -21,4 +21,34 @@ class HomeRepositoryImpl implements HomeRepository {
       return Left(DataBaseFailure());
     }
   }
+
+  @override
+  Future deleteLauda(Lauda lauda) async {
+    try {
+      final laudas = await homeDataSource.deleteLauda(lauda);
+      return Right(laudas);
+    } catch (_) {
+      return Left(DataBaseFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> insertLauda(Lauda lauda) async {
+    try {
+      final laudas = await homeDataSource.insertLauda(lauda);
+      return Right(laudas);
+    } catch (_) {
+      return Left(DataBaseFailure());
+    }
+  }
+
+  @override
+  Future updateLauda(Lauda lauda) async {
+    try {
+      final laudas = await homeDataSource.updateLauda(lauda);
+      return Right(laudas);
+    } catch (_) {
+      return Left(DataBaseFailure());
+    }
+  }
 }

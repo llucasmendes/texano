@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:texano/core/data/moor_database.dart';
 import 'package:texano/features/home/utils/home_injection.dart';
 
 final dep = GetIt.instance;
@@ -16,4 +17,5 @@ void init() {
   //dep.registerLazySingleton(() => GoogleSignIn());
   //dep.registerLazySingleton(() => FacebookLogin());
   //dep.registerLazySingleton(() => DataConnectionChecker());
+  dep.registerLazySingleton(() => AppDatabase());
 }
