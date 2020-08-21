@@ -33,12 +33,3 @@ class AppDatabase extends _$AppDatabase {
       update(laudasTable).replace(data);
   Future deleteLaudas(LaudasTableData data) => delete(laudasTable).delete(data);
 }
-
-/*
-{
-  "id": 123,
-  "titulo: "Dizem que o seu coração voa mais que avião",
-  "conteudo": "So wakem e up when it is all over...",
-  "data": SEI NAO
-}
-*/
