@@ -33,6 +33,7 @@ dependencies:
   sailor: ^0.7.1
   dartz: ^0.9.1
   get_it: ^4.0.2
+  flutter_colorpicker: ^0.3.4
 
 dev_dependencies:
   flutter_test:

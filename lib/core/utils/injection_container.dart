@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:texano/features/home/utils/home_injection.dart';
+import 'package:texano/features/run/utils/run_injection.dart';
 
 final dep = GetIt.instance;
 
@@ -7,7 +8,8 @@ void init() {
   //! Features
   //! Home
   initHome();
-  //! Core
+  //! Run
+  initRun();
   //dep.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(dep()));
   //dep.registerLazySingleton<FirebaseInfo>(() => FirebaseInfoImpl(dep()));
   //! External
