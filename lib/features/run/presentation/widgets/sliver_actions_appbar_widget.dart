@@ -11,7 +11,7 @@ class SliverActionsAppBarWidget extends StatelessWidget {
 
   final ScrollController controller;
   final RunState state;
-  final appBarUnderlineHeight = 3.h;
+  final appBarUnderlineHeight = 1.w;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,21 @@ class SliverActionsAppBarWidget extends StatelessWidget {
           tooltip: RunStrings.play,
           icon: Icon(
             Icons.play_arrow,
-            size: 35.h,
+            size: 35,
           ),
           onPressed: _runText,
         ),
         IconButton(
           icon: Icon(
             Icons.edit,
-            size: 25.h,
+            size: 25,
+          ),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.color_lens,
+            size: 25,
           ),
           onPressed: () {
             final cubit = BlocProvider.of<RunCubit>(context);
@@ -51,7 +58,7 @@ class SliverActionsAppBarWidget extends StatelessWidget {
     final dimension = controller.position.maxScrollExtent;
     final availableSpace = dimension - controller.offset;
     final userTime = state.runVelocity;
-    final scrollTime = (userTime * availableSpace) / dimension;
+    final scrollTime = (userTime * availableSpace * 1000) / dimension;
     controller.animateTo(
       dimension,
       duration: Duration(milliseconds: scrollTime.toInt()),

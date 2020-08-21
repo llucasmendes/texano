@@ -3,25 +3,27 @@ import 'package:texano/core/utils/app_colors.dart';
 import 'package:texano/core/utils/sizes.dart';
 
 class TrianguloWidget extends StatelessWidget {
-  const TrianguloWidget({this.indice});
+  const TrianguloWidget({
+    this.color = AppColors.white,
+  });
 
-  final int indice;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: CustomPaint(
         size: Size(16.w, 15.h),
-        painter: DrawTrianglePainter(),
+        painter: DrawTrianglePainter(color),
       ),
     );
   }
 }
 
 class DrawTrianglePainter extends CustomPainter {
-  DrawTrianglePainter() {
+  DrawTrianglePainter(Color color) {
     _paint = Paint()
-      ..color = AppColors.primaryBlack
+      ..color = color
       ..style = PaintingStyle.fill;
   }
 

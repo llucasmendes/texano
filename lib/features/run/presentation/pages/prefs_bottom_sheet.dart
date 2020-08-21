@@ -25,11 +25,11 @@ class PrefsBottomSheet {
                   padding: EdgeInsets.all(20.h),
                   child: Column(
                     children: [
-                      SliderFontSizeWidget(cubit, state),
+                      SliderFontSizeWidget(cubit),
                       SizedBox(
                         height: 30.h,
                       ),
-                      SliderRunVelocityWidget(cubit, state),
+                      SliderRunVelocityWidget(cubit),
                       SizedBox(
                         height: 30.h,
                       ),

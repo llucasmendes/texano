@@ -4,9 +4,8 @@ import 'package:texano/features/run/presentation/cubit/run_cubit.dart';
 import 'package:texano/features/run/utils/run_strings.dart';
 
 class SliderRunVelocityWidget extends StatelessWidget {
-  SliderRunVelocityWidget(this.cubit, this.state);
+  SliderRunVelocityWidget(this.cubit);
 
-  final RunState state;
   final RunCubit cubit;
 
   @override
@@ -14,17 +13,17 @@ class SliderRunVelocityWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          RunStrings.runVelocityInfo(state.runVelocity.toInt()),
+          RunStrings.runVelocityInfo(cubit.state.runVelocity.toInt()),
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 25.ssp,
+            fontSize: 18.ssp,
           ),
         ),
         SizedBox(
           height: 20.h,
         ),
         Slider.adaptive(
-          value: state.runVelocity,
+          value: cubit.state.runVelocity,
           min: 1,
           max: 50,
           onChanged: (value) => cubit.runVelocityChanged(value),
