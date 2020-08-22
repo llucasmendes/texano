@@ -37,6 +37,7 @@ dependencies:
   moor: ^3.3.1
   path_provider: ^1.6.11
 
+  flutter_colorpicker: ^0.3.4
 
 dev_dependencies:
   flutter_test:

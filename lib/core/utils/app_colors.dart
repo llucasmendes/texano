@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColors {
+  static const Color white = Colors.white;
+
   static final int _blackPrimaryValue = 0xFF000000;
 
   static final MaterialColor primaryBlack = MaterialColor(
