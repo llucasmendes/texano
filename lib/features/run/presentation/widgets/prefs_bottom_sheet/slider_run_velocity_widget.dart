@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:texano/core/utils/sizes.dart';
 import 'package:texano/features/run/presentation/cubit/run_cubit.dart';
 import 'package:texano/features/run/utils/run_strings.dart';
 
@@ -15,12 +14,7 @@ class SliderRunVelocityWidget extends StatelessWidget {
         Text(
           RunStrings.runVelocityInfo(cubit.state.runVelocity.toInt()),
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 18.ssp,
-          ),
-        ),
-        SizedBox(
-          height: 20.h,
+          style: TextStyle(fontSize: 17),
         ),
         Slider.adaptive(
           value: cubit.state.runVelocity,

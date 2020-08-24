@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:texano/features/run/presentation/widgets/triangulo_widget.dart';
+import 'package:texano/features/run/presentation/widgets/run_page/triangulo_widget.dart';
 
 class SetasCentralizadasWidget extends StatelessWidget {
   @override

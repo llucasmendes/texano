@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:texano/core/cubit/account_cubit.dart';
+import 'package:texano/core/utils/app_colors.dart';
 import 'package:texano/core/utils/sizes.dart';
 import 'package:texano/features/home/navigator/home_navigator.dart';
 import 'package:texano/features/home/presentation/cubit/home_cubit.dart';
@@ -8,14 +10,35 @@ import 'package:texano/features/home/utils/home_strings.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<AccountCubit>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Teleprompter Texano'),
         centerTitle: true,
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => HomeNavigator.goToRun(),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Premium?'),
+                Switch.adaptive(
+                  activeColor: Colors.redAccent,
+                  activeTrackColor: AppColors.amber,
+                  inactiveTrackColor: AppColors.primaryBlack[50],
+                  value: cubit.state.isPremium,
+                  onChanged: (value) => cubit.isPremiumChanged(value),
+                ),
+              ],
+            ),
+          ),
+          FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: HomeNavigator.goToRun,
+          ),
+        ],
       ),
       body: Center(
         child: BlocBuilder<HomeCubit, HomeState>(
