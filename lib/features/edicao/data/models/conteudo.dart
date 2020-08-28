@@ -51,7 +51,7 @@ class Segmento {
     "segmento": [
         {
             "texto": "Shyam",
-            "cor": "shyamjaiswal@gmail.com"
+            "cor": "0xFFFFFFFF"
         }
     ]
 }
