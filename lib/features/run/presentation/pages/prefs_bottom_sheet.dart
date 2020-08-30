@@ -32,7 +32,11 @@ class PrefsBottomSheet {
                       SliderRunVelocityWidget(cubit),
                       SizedBox(height: 10),
                       ListTile(
-                        onTap: () => ColorAlertDialog(context, cubit).call(),
+                        onTap: () => ColorAlertDialog(
+                          context: context,
+                          cubit: cubit,
+                          colorArea: ColorArea.text,
+                        ).call(),
                         title: Text(RunStrings.textColor),
                         trailing: CircleAvatar(
                           radius: 22,
@@ -40,7 +44,11 @@ class PrefsBottomSheet {
                         ),
                       ),
                       ListTile(
-                        onTap: () => ColorAlertDialog(context, cubit).call(),
+                        onTap: () => ColorAlertDialog(
+                          context: context,
+                          cubit: cubit,
+                          colorArea: ColorArea.background,
+                        ).call(),
                         title: Text(RunStrings.backgroundColor),
                         trailing: CircleAvatar(
                           radius: 22,

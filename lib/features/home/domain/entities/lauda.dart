@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class Lauda extends Equatable {
+class Lauda {
   Lauda({
     @required this.id,
     @required this.titulo,
@@ -10,10 +9,7 @@ class Lauda extends Equatable {
   });
 
   final int id;
-  final String titulo;
-  final String conteudo;
-  final DateTime data;
-
-  @override
-  List<Object> get props => [id, titulo, conteudo, data];
+  String titulo;
+  String conteudo;
+  DateTime data;
 }

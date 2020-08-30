@@ -9,11 +9,18 @@ import 'package:texano/features/run/presentation/cubit/run_cubit.dart';
 import 'package:texano/features/run/utils/run_consts.dart';
 import 'package:texano/features/run/utils/run_strings.dart';
 
+enum ColorArea { text, background }
+
 class ColorAlertDialog {
-  ColorAlertDialog(this.context, this.cubit);
+  ColorAlertDialog({
+    @required this.context,
+    @required this.cubit,
+    @required this.colorArea,
+  });
 
   final BuildContext context;
   final RunCubit cubit;
+  final ColorArea colorArea;
 
   Future<void> call() async {
     final isPremium = BlocProvider.of<AccountCubit>(context).state.isPremium;
@@ -35,11 +42,15 @@ class ColorAlertDialog {
           ),
           content: SingleChildScrollView(
             child: BlockPicker(
-              pickerColor: cubit.state.fontColor,
+              pickerColor: colorArea == ColorArea.text
+                  ? cubit.state.fontColor
+                  : cubit.state.backgroundColor,
               onColorChanged: (color) {
-                if (isPremium || RunConsts.freeColors.contains(color))
-                  cubit.fontColorChanged(color);
-                else
+                if (isPremium || RunConsts.freeColors.contains(color)) {
+                  colorArea == ColorArea.text
+                      ? cubit.fontColorChanged(color)
+                      : cubit.backgroundColorChanged(color);
+                } else
                   RunNavigator.goToBePremium();
               },
             ),

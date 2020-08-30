@@ -14,16 +14,27 @@ class RunCubit extends Cubit<RunState> {
             runVelocity: 10,
             fontColor: AppColors.white,
             backgroundColor: AppColors.primaryBlack,
+            isEditing: false,
           ),
         );
 
-  fontSizeChanged(double value) => emit(state.copyWith(fontSize: value));
+  fontSizeChanged(double value) {
+    emit(state.copyWith(fontSize: value));
+  }
 
-  runVelocityChanged(double value) => emit(state.copyWith(runVelocity: value));
+  runVelocityChanged(double value) {
+    emit(state.copyWith(runVelocity: value));
+  }
 
-  fontColorChanged(Color value) => emit(state.copyWith(fontColor: value));
+  fontColorChanged(Color value) {
+    emit(state.copyWith(fontColor: value));
+  }
 
   backgroundColorChanged(Color value) {
     emit(state.copyWith(backgroundColor: value));
+  }
+
+  isEditingChanged(bool value) {
+    emit(state.copyWith(isEditing: value));
   }
 }
