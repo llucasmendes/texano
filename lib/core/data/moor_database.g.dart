@@ -12,12 +12,11 @@ class LaudasTableData extends DataClass implements Insertable<LaudasTableData> {
   final DateTime data;
   final String texto;
   final String titulo;
-  LaudasTableData({
-    this.id,
-    this.data,
-    @required this.texto,
-    @required this.titulo,
-  });
+  LaudasTableData(
+      {@required this.id,
+      this.data,
+      @required this.texto,
+      @required this.titulo});
   factory LaudasTableData.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
@@ -285,12 +284,364 @@ class $LaudasTableTable extends LaudasTable
   }
 }
 
+class PreferenciasTableData extends DataClass
+    implements Insertable<PreferenciasTableData> {
+  final int id;
+  final String corTexto;
+  final String corFundo;
+  final int tamanhoTexto;
+  final int velocidadeRolagem;
+  PreferenciasTableData(
+      {@required this.id,
+      @required this.corTexto,
+      @required this.corFundo,
+      @required this.tamanhoTexto,
+      @required this.velocidadeRolagem});
+  factory PreferenciasTableData.fromData(
+      Map<String, dynamic> data, GeneratedDatabase db,
+      {String prefix}) {
+    final effectivePrefix = prefix ?? '';
+    final intType = db.typeSystem.forDartType<int>();
+    final stringType = db.typeSystem.forDartType<String>();
+    return PreferenciasTableData(
+      id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
+      corTexto: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}cor_texto']),
+      corFundo: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}cor_fundo']),
+      tamanhoTexto: intType
+          .mapFromDatabaseResponse(data['${effectivePrefix}tamanho_texto']),
+      velocidadeRolagem: intType.mapFromDatabaseResponse(
+          data['${effectivePrefix}velocidade_rolagem']),
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (!nullToAbsent || id != null) {
+      map['id'] = Variable<int>(id);
+    }
+    if (!nullToAbsent || corTexto != null) {
+      map['cor_texto'] = Variable<String>(corTexto);
+    }
+    if (!nullToAbsent || corFundo != null) {
+      map['cor_fundo'] = Variable<String>(corFundo);
+    }
+    if (!nullToAbsent || tamanhoTexto != null) {
+      map['tamanho_texto'] = Variable<int>(tamanhoTexto);
+    }
+    if (!nullToAbsent || velocidadeRolagem != null) {
+      map['velocidade_rolagem'] = Variable<int>(velocidadeRolagem);
+    }
+    return map;
+  }
+
+  PreferecniasTableCompanion toCompanion(bool nullToAbsent) {
+    return PreferecniasTableCompanion(
+      id: id == null && nullToAbsent ? const Value.absent() : Value(id),
+      corTexto: corTexto == null && nullToAbsent
+          ? const Value.absent()
+          : Value(corTexto),
+      corFundo: corFundo == null && nullToAbsent
+          ? const Value.absent()
+          : Value(corFundo),
+      tamanhoTexto: tamanhoTexto == null && nullToAbsent
+          ? const Value.absent()
+          : Value(tamanhoTexto),
+      velocidadeRolagem: velocidadeRolagem == null && nullToAbsent
+          ? const Value.absent()
+          : Value(velocidadeRolagem),
+    );
+  }
+
+  factory PreferenciasTableData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return PreferenciasTableData(
+      id: serializer.fromJson<int>(json['id']),
+      corTexto: serializer.fromJson<String>(json['corTexto']),
+      corFundo: serializer.fromJson<String>(json['corFundo']),
+      tamanhoTexto: serializer.fromJson<int>(json['tamanhoTexto']),
+      velocidadeRolagem: serializer.fromJson<int>(json['velocidadeRolagem']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'corTexto': serializer.toJson<String>(corTexto),
+      'corFundo': serializer.toJson<String>(corFundo),
+      'tamanhoTexto': serializer.toJson<int>(tamanhoTexto),
+      'velocidadeRolagem': serializer.toJson<int>(velocidadeRolagem),
+    };
+  }
+
+  PreferenciasTableData copyWith(
+          {int id,
+          String corTexto,
+          String corFundo,
+          int tamanhoTexto,
+          int velocidadeRolagem}) =>
+      PreferenciasTableData(
+        id: id ?? this.id,
+        corTexto: corTexto ?? this.corTexto,
+        corFundo: corFundo ?? this.corFundo,
+        tamanhoTexto: tamanhoTexto ?? this.tamanhoTexto,
+        velocidadeRolagem: velocidadeRolagem ?? this.velocidadeRolagem,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('PreferecniasTableData(')
+          ..write('id: $id, ')
+          ..write('corTexto: $corTexto, ')
+          ..write('corFundo: $corFundo, ')
+          ..write('tamanhoTexto: $tamanhoTexto, ')
+          ..write('velocidadeRolagem: $velocidadeRolagem')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => $mrjf($mrjc(
+      id.hashCode,
+      $mrjc(
+          corTexto.hashCode,
+          $mrjc(corFundo.hashCode,
+              $mrjc(tamanhoTexto.hashCode, velocidadeRolagem.hashCode)))));
+  @override
+  bool operator ==(dynamic other) =>
+      identical(this, other) ||
+      (other is PreferenciasTableData &&
+          other.id == this.id &&
+          other.corTexto == this.corTexto &&
+          other.corFundo == this.corFundo &&
+          other.tamanhoTexto == this.tamanhoTexto &&
+          other.velocidadeRolagem == this.velocidadeRolagem);
+}
+
+class PreferecniasTableCompanion
+    extends UpdateCompanion<PreferenciasTableData> {
+  final Value<int> id;
+  final Value<String> corTexto;
+  final Value<String> corFundo;
+  final Value<int> tamanhoTexto;
+  final Value<int> velocidadeRolagem;
+  const PreferecniasTableCompanion({
+    this.id = const Value.absent(),
+    this.corTexto = const Value.absent(),
+    this.corFundo = const Value.absent(),
+    this.tamanhoTexto = const Value.absent(),
+    this.velocidadeRolagem = const Value.absent(),
+  });
+  PreferecniasTableCompanion.insert({
+    this.id = const Value.absent(),
+    @required String corTexto,
+    @required String corFundo,
+    @required int tamanhoTexto,
+    @required int velocidadeRolagem,
+  })  : corTexto = Value(corTexto),
+        corFundo = Value(corFundo),
+        tamanhoTexto = Value(tamanhoTexto),
+        velocidadeRolagem = Value(velocidadeRolagem);
+  static Insertable<PreferenciasTableData> custom({
+    Expression<int> id,
+    Expression<String> corTexto,
+    Expression<String> corFundo,
+    Expression<int> tamanhoTexto,
+    Expression<int> velocidadeRolagem,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (corTexto != null) 'cor_texto': corTexto,
+      if (corFundo != null) 'cor_fundo': corFundo,
+      if (tamanhoTexto != null) 'tamanho_texto': tamanhoTexto,
+      if (velocidadeRolagem != null) 'velocidade_rolagem': velocidadeRolagem,
+    });
+  }
+
+  PreferecniasTableCompanion copyWith(
+      {Value<int> id,
+      Value<String> corTexto,
+      Value<String> corFundo,
+      Value<int> tamanhoTexto,
+      Value<int> velocidadeRolagem}) {
+    return PreferecniasTableCompanion(
+      id: id ?? this.id,
+      corTexto: corTexto ?? this.corTexto,
+      corFundo: corFundo ?? this.corFundo,
+      tamanhoTexto: tamanhoTexto ?? this.tamanhoTexto,
+      velocidadeRolagem: velocidadeRolagem ?? this.velocidadeRolagem,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (corTexto.present) {
+      map['cor_texto'] = Variable<String>(corTexto.value);
+    }
+    if (corFundo.present) {
+      map['cor_fundo'] = Variable<String>(corFundo.value);
+    }
+    if (tamanhoTexto.present) {
+      map['tamanho_texto'] = Variable<int>(tamanhoTexto.value);
+    }
+    if (velocidadeRolagem.present) {
+      map['velocidade_rolagem'] = Variable<int>(velocidadeRolagem.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PreferecniasTableCompanion(')
+          ..write('id: $id, ')
+          ..write('corTexto: $corTexto, ')
+          ..write('corFundo: $corFundo, ')
+          ..write('tamanhoTexto: $tamanhoTexto, ')
+          ..write('velocidadeRolagem: $velocidadeRolagem')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $PreferecniasTableTable extends PreferenciasTable
+    with TableInfo<$PreferecniasTableTable, PreferenciasTableData> {
+  final GeneratedDatabase _db;
+  final String _alias;
+  $PreferecniasTableTable(this._db, [this._alias]);
+  final VerificationMeta _idMeta = const VerificationMeta('id');
+  GeneratedIntColumn _id;
+  @override
+  GeneratedIntColumn get id => _id ??= _constructId();
+  GeneratedIntColumn _constructId() {
+    return GeneratedIntColumn('id', $tableName, false,
+        hasAutoIncrement: true, declaredAsPrimaryKey: true);
+  }
+
+  final VerificationMeta _corTextoMeta = const VerificationMeta('corTexto');
+  GeneratedTextColumn _corTexto;
+  @override
+  GeneratedTextColumn get corTexto => _corTexto ??= _constructCorTexto();
+  GeneratedTextColumn _constructCorTexto() {
+    return GeneratedTextColumn('cor_texto', $tableName, false,
+        minTextLength: 1, maxTextLength: 50);
+  }
+
+  final VerificationMeta _corFundoMeta = const VerificationMeta('corFundo');
+  GeneratedTextColumn _corFundo;
+  @override
+  GeneratedTextColumn get corFundo => _corFundo ??= _constructCorFundo();
+  GeneratedTextColumn _constructCorFundo() {
+    return GeneratedTextColumn('cor_fundo', $tableName, false,
+        minTextLength: 1, maxTextLength: 50);
+  }
+
+  final VerificationMeta _tamanhoTextoMeta =
+      const VerificationMeta('tamanhoTexto');
+  GeneratedIntColumn _tamanhoTexto;
+  @override
+  GeneratedIntColumn get tamanhoTexto =>
+      _tamanhoTexto ??= _constructTamanhoTexto();
+  GeneratedIntColumn _constructTamanhoTexto() {
+    return GeneratedIntColumn(
+      'tamanho_texto',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _velocidadeRolagemMeta =
+      const VerificationMeta('velocidadeRolagem');
+  GeneratedIntColumn _velocidadeRolagem;
+  @override
+  GeneratedIntColumn get velocidadeRolagem =>
+      _velocidadeRolagem ??= _constructVelocidadeRolagem();
+  GeneratedIntColumn _constructVelocidadeRolagem() {
+    return GeneratedIntColumn(
+      'velocidade_rolagem',
+      $tableName,
+      false,
+    );
+  }
+
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, corTexto, corFundo, tamanhoTexto, velocidadeRolagem];
+  @override
+  $PreferecniasTableTable get asDslTable => this;
+  @override
+  String get $tableName => _alias ?? 'preferecnias_table';
+  @override
+  final String actualTableName = 'preferecnias_table';
+  @override
+  VerificationContext validateIntegrity(
+      Insertable<PreferenciasTableData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id'], _idMeta));
+    }
+    if (data.containsKey('cor_texto')) {
+      context.handle(_corTextoMeta,
+          corTexto.isAcceptableOrUnknown(data['cor_texto'], _corTextoMeta));
+    } else if (isInserting) {
+      context.missing(_corTextoMeta);
+    }
+    if (data.containsKey('cor_fundo')) {
+      context.handle(_corFundoMeta,
+          corFundo.isAcceptableOrUnknown(data['cor_fundo'], _corFundoMeta));
+    } else if (isInserting) {
+      context.missing(_corFundoMeta);
+    }
+    if (data.containsKey('tamanho_texto')) {
+      context.handle(
+          _tamanhoTextoMeta,
+          tamanhoTexto.isAcceptableOrUnknown(
+              data['tamanho_texto'], _tamanhoTextoMeta));
+    } else if (isInserting) {
+      context.missing(_tamanhoTextoMeta);
+    }
+    if (data.containsKey('velocidade_rolagem')) {
+      context.handle(
+          _velocidadeRolagemMeta,
+          velocidadeRolagem.isAcceptableOrUnknown(
+              data['velocidade_rolagem'], _velocidadeRolagemMeta));
+    } else if (isInserting) {
+      context.missing(_velocidadeRolagemMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PreferenciasTableData map(Map<String, dynamic> data, {String tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
+    return PreferenciasTableData.fromData(data, _db, prefix: effectivePrefix);
+  }
+
+  @override
+  $PreferecniasTableTable createAlias(String alias) {
+    return $PreferecniasTableTable(_db, alias);
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   $LaudasTableTable _laudasTable;
   $LaudasTableTable get laudasTable => _laudasTable ??= $LaudasTableTable(this);
+  $PreferecniasTableTable _preferecniasTable;
+  $PreferecniasTableTable get preferecniasTable =>
+      _preferecniasTable ??= $PreferecniasTableTable(this);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [laudasTable];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [laudasTable, preferecniasTable];
 }
