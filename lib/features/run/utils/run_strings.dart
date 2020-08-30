@@ -1,5 +1,6 @@
 abstract class RunStrings {
   static final play = 'Play';
+  static final title = 'Título';
   static final textColor = 'Cor do texto';
   static final backgroundColor = 'Cor de fundo';
   static final bePremium = 'Seja Premium!';
