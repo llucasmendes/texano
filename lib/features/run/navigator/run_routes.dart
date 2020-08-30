@@ -1,20 +1,19 @@
+import 'package:sailor/sailor.dart';
 import 'package:texano/core/navigator/routes.dart';
+import 'package:texano/features/run/presentation/pages/be_premium_page.dart';
 
-abstract class HomeRoutes {
-  static const runPage = '/run';
+abstract class RunRoutes {
+  static const bePremiumPage = '/bePremium';
 
   static void createRoutes() {
     Routes.sailor.addRoutes(
       [
-        // SailorRoute(
-        //   name: runPage,
-        //   builder: (context, args, params) {
-        //     return BlocProvider<RunCubit>(
-        //       create: (_) => dep<RunCubit>(),
-        //       child: RunPage(args),
-        //     );
-        //   },
-        // ),
+        SailorRoute(
+          name: bePremiumPage,
+          builder: (context, args, params) {
+            return BePremiumPage();
+          },
+        ),
       ],
     );
   }

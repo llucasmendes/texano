@@ -5,5 +5,6 @@ abstract class AppTheme {
   static final texanoTheme = ThemeData(
     primarySwatch: AppColors.primaryBlack,
     visualDensity: VisualDensity.adaptivePlatformDensity,
+    scaffoldBackgroundColor: AppColors.gray,
   );
 }

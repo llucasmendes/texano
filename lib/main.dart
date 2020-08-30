@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:texano/core/cubit/account_cubit.dart';
 import 'package:texano/core/navigator/routes.dart';
 import 'package:texano/core/theme/app_theme.dart';
 import 'package:texano/core/utils/injection_container.dart' as di;
@@ -17,15 +18,22 @@ void main() {
 class TexanoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Teleprompter Texano',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.texanoTheme,
-      onGenerateRoute: Routes.sailor.generator(),
-      navigatorKey: Routes.sailor.navigatorKey,
-      home: BlocProvider<HomeCubit>(
-        create: (_) => dep<HomeCubit>()..getLaudas(),
-        child: HomePage(),
+    return BlocProvider<AccountCubit>(
+      create: (_) => AccountCubit(),
+      child: MaterialApp(
+        title: 'Teleprompter Texano',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.texanoTheme,
+        onGenerateRoute: Routes.sailor.generator(),
+        navigatorKey: Routes.sailor.navigatorKey,
+        home: BlocBuilder<AccountCubit, AccountState>(
+          builder: (context, state) {
+            return BlocProvider<HomeCubit>(
+              create: (_) => dep<HomeCubit>()..getLaudas(),
+              child: HomePage(),
+            );
+          },
+        ),
       ),
     );
   }

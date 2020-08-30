@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:texano/core/utils/app_colors.dart';
-import 'package:texano/core/utils/sizes.dart';
 
 class TrianguloWidget extends StatelessWidget {
   const TrianguloWidget({
@@ -13,7 +12,7 @@ class TrianguloWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: CustomPaint(
-        size: Size(16.w, 15.h),
+        size: Size(16, 15),
         painter: DrawTrianglePainter(color),
       ),
     );
