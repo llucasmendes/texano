@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:texano/core/cubit/account_cubit.dart';
 import 'package:texano/core/utils/app_colors.dart';
 import 'package:texano/core/utils/sizes.dart';
+import 'package:texano/features/home/domain/entities/lauda.dart';
 import 'package:texano/features/home/navigator/home_navigator.dart';
 import 'package:texano/features/home/presentation/cubit/home_cubit.dart';
 import 'package:texano/features/home/utils/home_strings.dart';
@@ -11,6 +12,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<AccountCubit>(context);
+    final Lauda lauda = Lauda(
+      conteudo: '',
+      data: DateTime.now(),
+      id: null,
+      titulo: '',
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text('Teleprompter Texano'),
@@ -36,7 +43,7 @@ class HomePage extends StatelessWidget {
           ),
           FloatingActionButton(
             child: Icon(Icons.add),
-            onPressed: HomeNavigator.goToRun,
+            onPressed: () => HomeNavigator.goToRun(lauda: lauda),
           ),
         ],
       ),

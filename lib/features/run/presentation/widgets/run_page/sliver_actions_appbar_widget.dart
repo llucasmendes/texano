@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:texano/core/data/moor_database.dart';
 import 'package:texano/core/utils/app_colors.dart';
 import 'package:texano/core/utils/sizes.dart';
+import 'package:texano/features/home/data/datasource/home_datasouce.dart';
 import 'package:texano/features/home/domain/entities/lauda.dart';
 import 'package:texano/features/run/presentation/cubit/run_cubit.dart';
 import 'package:texano/features/run/presentation/pages/prefs_bottom_sheet.dart';
@@ -24,6 +26,8 @@ class SliverActionsAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<RunCubit>(context);
+    AppDatabase database = new AppDatabase();
+    HomeDataSource datasource = HomeDataSource(database: database);
     return SliverAppBar(
       floating: true,
       actions: [
@@ -58,7 +62,7 @@ class SliverActionsAppBarWidget extends StatelessWidget {
               cubit.isEditingChanged(false);
               lauda.conteudo = conteudoTextController.text;
               lauda.titulo = tituloTextController.text;
-              // salvar lauda no banco aqui
+              datasource.insertLauda(lauda);
             },
           ),
         IconButton(
@@ -68,7 +72,7 @@ class SliverActionsAppBarWidget extends StatelessWidget {
           ),
           onPressed: () async {
             await PrefsBottomSheet(context, cubit).call();
-            // salvar preferencias aqui
+            // TODO(salvar): datasource.insertPreferencia();
           },
         ),
       ],
