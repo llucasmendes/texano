@@ -23,6 +23,14 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Teleprompter Texano'),
           centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () {
+                BlocProvider.of<HomeCubit>(context).getLaudas();
+              },
+            ),
+          ],
         ),
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
