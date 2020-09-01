@@ -5,6 +5,7 @@ import 'package:texano/core/utils/app_colors.dart';
 import 'package:texano/core/utils/sizes.dart';
 import 'package:texano/features/home/data/datasource/home_datasouce.dart';
 import 'package:texano/features/home/domain/entities/lauda.dart';
+import 'package:texano/features/home/domain/entities/preferencia.dart';
 import 'package:texano/features/run/presentation/cubit/run_cubit.dart';
 import 'package:texano/features/run/presentation/pages/prefs_bottom_sheet.dart';
 import 'package:texano/features/run/utils/run_strings.dart';
@@ -72,7 +73,13 @@ class SliverActionsAppBarWidget extends StatelessWidget {
           ),
           onPressed: () async {
             await PrefsBottomSheet(context, cubit).call();
-            // TODO(salvar): datasource.insertPreferencia();
+            datasource.insertPreferencia(Preferencia(
+              corFundo: cubit.state.backgroundColor.value.toString(),
+              corTexto: cubit.state.fontColor.value.toString(),
+              id: 1,
+              tamanhoTexto: cubit.state.fontSize.toInt(),
+              velocidadeRolagem: cubit.state.runVelocity.toInt(),
+            ));
           },
         ),
       ],
