@@ -65,6 +65,7 @@ class RunPage extends StatelessWidget {
                                       child: TextField(
                                         controller: tituloTextController,
                                         maxLines: null,
+                                        minLines: 1,
                                         decoration: InputDecoration(
                                           hintText: RunStrings.title,
                                         ),
@@ -79,6 +80,7 @@ class RunPage extends StatelessWidget {
                                     ),
                                     Container(
                                       padding: const EdgeInsets.all(5.0),
+                                      height: 500,
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                           color: state.fontColor,
@@ -88,6 +90,7 @@ class RunPage extends StatelessWidget {
                                       child: TextField(
                                         controller: conteudoTextController,
                                         maxLines: null,
+                                        minLines: 1,
                                         style: TextStyle(
                                           fontSize: state.fontSize,
                                           color: state.fontColor,
