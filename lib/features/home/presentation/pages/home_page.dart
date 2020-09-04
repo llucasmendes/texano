@@ -17,6 +17,10 @@ class HomePage extends StatelessWidget {
       data: DateTime.now(),
       id: null,
       titulo: '',
+      corFundo: null,
+      corTexto: null,
+      tamanhoTexto: null,
+      velocidadeRolagem: null,
     );
     return BlocBuilder<AccountCubit, AccountState>(builder: (context, state) {
       return Scaffold(

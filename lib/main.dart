@@ -19,7 +19,7 @@ class TexanoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AccountCubit>(
-      create: (_) => AccountCubit()..recuperaPreferencia(),
+      create: (_) => AccountCubit(),
       child: MaterialApp(
         title: 'Teleprompter Texano',
         debugShowCheckedModeBanner: false,

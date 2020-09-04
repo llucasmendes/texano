@@ -9,22 +9,16 @@ class LaudasTable extends Table {
   TextColumn get texto => text().withLength(min: 1, max: 100000)();
   TextColumn get titulo => text().withLength(min: 1, max: 50)();
 
-  @override
-  Set<Column> get primaryKey => {id};
-}
-
-class PreferenciasTable extends Table {
-  IntColumn get id => integer().autoIncrement()();
   TextColumn get corTexto => text().withLength(min: 1, max: 50)();
   TextColumn get corFundo => text().withLength(min: 1, max: 50)();
-  IntColumn get tamanhoTexto => integer()();
-  IntColumn get velocidadeRolagem => integer()();
+  RealColumn get tamanhoTexto => real()();
+  RealColumn get velocidadeRolagem => real()();
 
   @override
   Set<Column> get primaryKey => {id};
 }
 
-@UseMoor(tables: [LaudasTable, PreferenciasTable])
+@UseMoor(tables: [LaudasTable])
 class AppDatabase extends _$AppDatabase {
   AppDatabase()
       : super((FlutterQueryExecutor.inDatabaseFolder(
@@ -42,15 +36,4 @@ class AppDatabase extends _$AppDatabase {
   Future updateLaudas(LaudasTableData data) =>
       update(laudasTable).replace(data);
   Future deleteLaudas(LaudasTableData data) => delete(laudasTable).delete(data);
-
-  Future<List<PreferenciasTableData>> getAllPreferencias() =>
-      select(preferecniasTable).get();
-  Stream<List<PreferenciasTableData>> watchAllPreferencias() =>
-      select(preferecniasTable).watch();
-  Future<int> insertPreferencias(PreferenciasTableData data) =>
-      into(preferecniasTable).insert(data);
-  Future updatePreferencias(PreferenciasTableData data) =>
-      update(preferecniasTable).replace(data);
-  Future deletePreferencias(PreferenciasTableData data) =>
-      delete(preferecniasTable).delete(data);
 }

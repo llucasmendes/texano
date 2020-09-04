@@ -7,11 +7,19 @@ class LaudaModel extends Lauda {
     @required String titulo,
     @required String conteudo,
     @required DateTime data,
+    @required String corTexto,
+    @required String corFundo,
+    @required double tamanhoTexto,
+    @required double velocidadeRolagem,
   }) : super(
           id: id,
           titulo: titulo,
           conteudo: conteudo,
           data: data,
+          corFundo: corFundo,
+          corTexto: corTexto,
+          tamanhoTexto: tamanhoTexto,
+          velocidadeRolagem: velocidadeRolagem,
         );
 
   factory LaudaModel.fromMap(Map<String, dynamic> dados) {
@@ -20,6 +28,10 @@ class LaudaModel extends Lauda {
       titulo: dados['titulo'],
       conteudo: dados['conteudo'],
       data: dados['data'],
+      corFundo: dados['corFundo'],
+      corTexto: dados['corTexto'],
+      tamanhoTexto: dados['tamanhoTexto'],
+      velocidadeRolagem: dados['velocidadeRolagem'],
     );
   }
 
@@ -29,6 +41,10 @@ class LaudaModel extends Lauda {
       'titulo': titulo,
       'conteudo': conteudo,
       'data': data,
+      'corFundo': corFundo,
+      'corTexto': corTexto,
+      'tamanhoTexto': tamanhoTexto,
+      'velocidadeRolagem': velocidadeRolagem,
     };
   }
 }
