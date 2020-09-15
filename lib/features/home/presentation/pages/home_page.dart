@@ -18,86 +18,92 @@ class HomePage extends StatelessWidget {
       id: null,
       titulo: '',
     );
-    return BlocBuilder<AccountCubit, AccountState>(builder: (context, state) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Teleprompter Texano'),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () {
-                BlocProvider.of<HomeCubit>(context).getLaudas();
+    return BlocBuilder<AccountCubit, AccountState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Teleprompter Texano'),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                icon: Icon(Icons.settings_remote),
+                onPressed: HomeNavigator.goToConnection,
+              ),
+              IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  BlocProvider.of<HomeCubit>(context).getLaudas();
+                },
+              ),
+            ],
+          ),
+          floatingActionButton: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Premium?'),
+                    Switch.adaptive(
+                      activeColor: Colors.redAccent,
+                      activeTrackColor: AppColors.amber,
+                      inactiveTrackColor: AppColors.primaryBlack[50],
+                      value: cubit.state.isPremium,
+                      onChanged: (value) => cubit.isPremiumChanged(value),
+                    ),
+                  ],
+                ),
+              ),
+              FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: () => HomeNavigator.goToRun(lauda: lauda),
+              ),
+            ],
+          ),
+          body: Center(
+            child: BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                if (state is HomeLaudasCarregadas) {
+                  final laudas = state.laudas;
+                  if (laudas.isEmpty) {
+                    return Text(HomeStrings.nenhumaLauda);
+                  } else {
+                    return ListView.separated(
+                      itemCount: laudas.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.h,
+                            horizontal: 10.w,
+                          ),
+                          leading: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '${index + 1}',
+                              style: TextStyle(fontSize: 16.ssp),
+                            ),
+                          ),
+                          title: Text(laudas[index].titulo),
+                          onTap: () =>
+                              HomeNavigator.goToRun(lauda: laudas[index]),
+                        );
+                      },
+                      separatorBuilder: (_, __) => Divider(
+                        height: 0,
+                      ),
+                    );
+                  }
+                }
+                if (state is HomeLaudasFalha) {
+                  return Text(state.mensagem);
+                }
+                return CircularProgressIndicator();
               },
             ),
-          ],
-        ),
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Premium?'),
-                  Switch.adaptive(
-                    activeColor: Colors.redAccent,
-                    activeTrackColor: AppColors.amber,
-                    inactiveTrackColor: AppColors.primaryBlack[50],
-                    value: cubit.state.isPremium,
-                    onChanged: (value) => cubit.isPremiumChanged(value),
-                  ),
-                ],
-              ),
-            ),
-            FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () => HomeNavigator.goToRun(lauda: lauda),
-            ),
-          ],
-        ),
-        body: Center(
-          child: BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) {
-              if (state is HomeLaudasCarregadas) {
-                final laudas = state.laudas;
-                if (laudas.isEmpty) {
-                  return Text(HomeStrings.nenhumaLauda);
-                } else {
-                  return ListView.separated(
-                    itemCount: laudas.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.h,
-                          horizontal: 10.w,
-                        ),
-                        leading: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '${index + 1}',
-                            style: TextStyle(fontSize: 16.ssp),
-                          ),
-                        ),
-                        title: Text(laudas[index].titulo),
-                        onTap: () =>
-                            HomeNavigator.goToRun(lauda: laudas[index]),
-                      );
-                    },
-                    separatorBuilder: (_, __) => Divider(
-                      height: 0,
-                    ),
-                  );
-                }
-              }
-              if (state is HomeLaudasFalha) {
-                return Text(state.mensagem);
-              }
-              return CircularProgressIndicator();
-            },
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

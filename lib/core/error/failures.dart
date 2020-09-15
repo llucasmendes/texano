@@ -15,3 +15,9 @@ class DataBaseFailure extends Failure {
     String message = 'Erro ao acessar o banco de dados.',
   }) : super(message: message);
 }
+
+class BluetoothFailure extends Failure {
+  BluetoothFailure({
+    String message = 'Erro ao acessar o bluetooth do dispositivo.',
+  }) : super(message: message);
+}

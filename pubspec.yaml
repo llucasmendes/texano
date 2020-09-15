@@ -36,6 +36,7 @@ dependencies:
   moor_flutter: ^3.1.0
   moor: ^3.3.1
   path_provider: ^1.6.11
+  flutter_blue: ^0.7.2
 
   flutter_colorpicker: ^0.3.4
 
