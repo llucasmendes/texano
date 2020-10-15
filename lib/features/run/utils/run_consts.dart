@@ -5,4 +5,5 @@ abstract class RunConsts {
     Colors.white,
     Colors.black,
   ];
+  static final maxVelocity = 80.0;
 }
